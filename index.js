@@ -6,22 +6,18 @@ import generateMarkdown from './utils/generateMarkdown.js';
 // TODO: Create an array of questions for user input
 const questions = [
     {
-        type: 'input',
         message: 'Enter project title',
         name: 'title'
     },
     {
-        type: 'input',
         message: 'Please enter a description of your project',
         name: 'projectDescription'
     },
     {
-        type: 'input',
         message: 'Enter project installation intructions',
         name: 'installation'
     },
     {
-        type: 'input',
         message: 'Project usage guidelines here',
         name: 'usageInfo'
     },
@@ -32,17 +28,14 @@ const questions = [
         choices: ['MIT', 'ICS', 'GPL', 'Apache', 'None']
     },
     {
-        type: 'input',
         message: 'Contribution Guidelines',
         name: 'contributionGuidelines'
     },
     {
-        type: 'input',
         message: 'Please enter your GitHub username',
         name: 'userName'
     },
     {
-        type: 'input',
         message: 'Please enter your email',
         name: 'email'
     },
@@ -67,7 +60,7 @@ async function init() {
         choices: ['Create README File', 'Exit']
     });
 
-    // If they choose to create the file, then you prompt them with all the related queations
+    // If they choose to create the file, then you prompt them with all the related questions
     switch(answersObj.menuChoice) {
         case 'Create README File':
             await generateMarkdown();
@@ -88,3 +81,6 @@ async function init() {
 
 // Function call to initialize app
 init();
+
+
+export default init;
