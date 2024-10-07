@@ -58,10 +58,16 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
+
+    // Promt the user to either create a README file or exit
+
+    // If they choose to create the file, then you prompt them with all the related queations
+
+    // Once you have the answersObj, you pass it to your generateMarkdown function
     inquirer.prompt(questions)
-    .then ((responseUserInput) => {
-        console.log(responseUserInput);
-        writeToFile("README.md",generateMarkdown(responseUserInput))
+    .then ((answersObj) => {
+        console.log(answersObj);
+        writeToFile("README.md",generateMarkdown(answersObj));
     })
 }
 
