@@ -57,18 +57,33 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-function init() {
+async function init() {
 
-    // Promt the user to either create a README file or exit
+    // Prompt the user to either create a README file or exit
+    const answersObj = await inquirer.prompt({
+        message: 'Please select an option',
+        name: 'menuChoice',
+        type: 'list',
+        choices: ['Create README File', 'Exit']
+    });
 
     // If they choose to create the file, then you prompt them with all the related queations
+    switch(answersObj.menuChoice) {
+        case 'Create README File':
+            await generateMarkdown();
+            init();
+            break;
+        default:
+            console.log('\nThank you for using the README generator!\n');
+    }
+
 
     // Once you have the answersObj, you pass it to your generateMarkdown function
-    inquirer.prompt(questions)
-    .then ((answersObj) => {
-        console.log(answersObj);
-        writeToFile("README.md",generateMarkdown(answersObj));
-    })
+    // inquirer.prompt(questions)
+    // .then ((answersObj) => {
+    //     console.log(answersObj);
+    //     writeToFile("README.md",generateMarkdown(answersObj));
+    // })
 }
 
 // Function call to initialize app
