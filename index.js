@@ -1,5 +1,5 @@
 // TODO: Include packages needed for this application
-import fs from 'fs';
+import {promises as fs} from 'fs';
 import inquirer from 'inquirer';
 import generateMarkdown from './utils/generateMarkdown.js';
 
@@ -25,7 +25,7 @@ const questions = [
         type: 'list',
         message: 'Choose your project license',
         name: 'license',
-        choices: ['MIT', 'ICS', 'GPL', 'Apache', 'None']
+        choices: ['MIT', 'ICS', 'GPL', 'Apache',{name: 'None', value: false}]
     },
     {
         message: 'Contribution Guidelines',
@@ -42,11 +42,8 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFileSync(fileName,data,(err)=>{
-        if(err) throw err
-    })
-
+async function writeToFile(fileName, data) {
+    return fs.writeFile(fileName,data);
 }
 
 // TODO: Create a function to initialize app
@@ -63,7 +60,10 @@ async function init() {
     // If they choose to create the file, then you prompt them with all the related questions
     switch(answersObj.menuChoice) {
         case 'Create README File':
-            await generateMarkdown();
+            const answers = await inquirer.prompt(questions);
+            const markDownFile = generateMarkdown(answers);
+            console.log('\nMarkdown file generated successfully!\n');
+            await writeToFile('./README.md', markDownFile);
             init();
             break;
         default:
