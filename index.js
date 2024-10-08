@@ -32,6 +32,10 @@ const questions = [
         name: 'contributionGuidelines'
     },
     {
+        message: 'Test Instructions',
+        name: 'testInstructions'
+    },
+    {
         message: 'Please enter your GitHub username',
         name: 'userName'
     },

@@ -15,7 +15,7 @@ function renderLicenseLink(license) {
     return '';
   }
 
-  return `[View License](https://opensource.org/licenses/${license})`;
+  return `- [License](#license)`;
 }
 
 // TODO: Create a function that returns the license section of README
@@ -38,7 +38,16 @@ function generateMarkdown(answersObj) {
   # ${answersObj.title}
 
   ${renderLicenseBadge(answersObj.license)}
+  
+
+  ## Table of Contents:
+  - [Description](#description)
+  - [Installation](#installation)
   ${renderLicenseLink(answersObj.license)}
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+
 
   ## Description:
   - ${answersObj.projectDescription}
@@ -46,16 +55,19 @@ function generateMarkdown(answersObj) {
   ## Installation:
   - ${answersObj.installation}
   
-  ## Usage Guidelines:
+  ${renderLicenseSection(answersObj.license)}
+  
+  ## Usage:
   - ${answersObj.usageInfo}
   
-  ## Contribution Guidelines:
+  ## Contributing:
   - ${answersObj.contributionGuidelines}
   
-  ${renderLicenseSection(answersObj.license)}
+  ## Tests:
+  - ${answersObj.testInstructions}
 
-  ### 
-  - This application was created by ${answersObj.userName}, who can be reached via email at ${answersObj.email}.
+  ## Questions:
+  - This application was created by [My GitHub Profile](https://github.com/${answersObj.userName}), who can be reached via email at ${answersObj.email} for any additional questions.
 `;
 }
 
